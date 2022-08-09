@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model noti {
+  id               Int                @id @default(autoincrement())
+  company_id       Int?               @db.Integer
+  position         String?            @db.VarChar(20)
+  reward           Int?               @db.Integer
+  description      String?            @db.VarChar(200)
+  tech             String?            @db.VarChar(20)
+}
