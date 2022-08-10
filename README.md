@@ -7,9 +7,7 @@
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
 
-## 요구사항 분석 및 구현 과정
-
-### 요구사항
+## 요구사항 분석
 
 - ORM 사용하여 구현 : ORM인 `prisma` 사용
 - RDBMS 사용 (SQLite, PostgreSQL 등) : `postgres` 사용
@@ -18,25 +16,27 @@
 - 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `noti` 모델 생성
 - Unit Test
 
-### 구현 과정
+## 구현 과정
 
-#### 0. modeling
+### 0. modeling
 
 AWS LightSail의 Database 사용. 아래 `.env` 공개
 
 - noti : 채용 공고 DB Model
 
-#### 1. 채용 공고 CRUD
+### 1. 채용 공고 CRUD
 
 - POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
 
 - Get /noti : 채용 공고의 모든 데이터를 조회
 
-#### 2. 채용 공고 검색 기능
+- Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
 
-#### 3. 채용 공고 상세
+### 2. 채용 공고 검색 기능
 
-#### 4. 지원
+### 3. 채용 공고 상세
+
+### 4. 지원
 
 ## Installation
 
