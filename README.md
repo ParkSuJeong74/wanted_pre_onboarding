@@ -22,6 +22,8 @@
 
 #### 0. modeling
 
+AWS LightSail의 Database 사용. 아래 `.env` 공개
+
 - noti : 채용 공고 DB Model
 
 #### 1. 채용 공고 CRUD
@@ -43,6 +45,14 @@ $ npm install
 ```
 
 ## Running the app
+
+실행하기 전에 `.env` 파일을 생성하고 아래 내용을 추가해야함.
+
+.env
+
+```
+DATABASE_URL="postgresql://dbmasteruser:preonboarding@ls-e59aa34ed81177ac30924c26cfbae54822118c6f.cjg7d5nnlkqz.ap-northeast-2.rds.amazonaws.com:5432/postgres"
+```
 
 ```bash
 # watch mode
