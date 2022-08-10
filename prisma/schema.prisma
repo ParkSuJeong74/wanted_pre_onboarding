@@ -10,12 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model noti {
+model Noti {
   id               String             @id @default(uuid())
   company_id       String             @db.VarChar(50)
   position         String?            @db.VarChar(20)
   reward           Int?               @db.Integer
   description      String?            @db.VarChar(200)
   tech             String?            @db.VarChar(20)
+  createdAt        DateTime?          @default(now()) @db.Date
+  updatedAt        DateTime?          @updatedAt
 }
 

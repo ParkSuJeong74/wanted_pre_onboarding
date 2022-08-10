@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
+import { Noti } from '@prisma/client';
 import { CreateNotiDto } from './dto';
 import { NotiService } from './noti.service';
 
@@ -7,19 +8,22 @@ export class NotiController {
   constructor(private readonly notiService: NotiService) {}
 
   @Post()
-  async createNoti(
-    @Body() createNotiDto: CreateNotiDto,
-  ): Promise<CreateNotiDto> {
+  async createNoti(@Body() createNotiDto: CreateNotiDto): Promise<Noti> {
     return await this.notiService.createNoti(createNotiDto);
   }
 
   @Get()
-  async notiLists() {
-    return await this.notiService.notiLists();
+  async notiDetail(@Query() id: string): Promise<Noti> {
+    return await this.notiService.notiDetail(id);
   }
 
-  @Get()
-  async notiDetail(@Query() id: string) {
-    return await this.notiService.notiDetail(id);
+  @Delete()
+  async deleteNoti(@Query() id: string): Promise<Noti> {
+    return await this.notiService.deleteNoti(id);
+  }
+
+  @Get('all')
+  async notiLists(): Promise<Noti[]> {
+    return await this.notiService.notiLists();
   }
 }

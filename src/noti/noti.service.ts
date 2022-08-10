@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Noti } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateNotiDto } from './dto';
 
@@ -6,7 +7,7 @@ import { CreateNotiDto } from './dto';
 export class NotiService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async createNoti(createNotiDto: CreateNotiDto): Promise<CreateNotiDto> {
+  async createNoti(createNotiDto: CreateNotiDto): Promise<Noti> {
     const { company_id, position, reward, description, tech } = createNotiDto;
     return await this.prismaService.noti.create({
       data: {
@@ -19,13 +20,17 @@ export class NotiService {
     });
   }
 
-  async notiLists() {
+  async notiLists(): Promise<Noti[]> {
     return await this.prismaService.noti.findMany();
   }
 
-  async notiDetail(id: string) {
+  async notiDetail(id): Promise<Noti> {
     return await this.prismaService.noti.findUnique({
-      where: { id },
+      where: id,
     });
+  }
+
+  async deleteNoti(id): Promise<Noti> {
+    return await this.prismaService.noti.delete({ where: id });
   }
 }
