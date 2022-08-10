@@ -12,12 +12,22 @@ datasource db {
 
 model Noti {
   id               String             @id @default(uuid())
-  company_id       String             @db.VarChar(50)
   position         String?            @db.VarChar(20)
   reward           Int?               @db.Integer
   description      String?            @db.VarChar(200)
   tech             String?            @db.VarChar(20)
   createdAt        DateTime?          @default(now()) @db.Date
   updatedAt        DateTime?          @updatedAt
+  company_id       String?
+  Company          Company?           @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
+model Company {
+  id               String             @id @default(uuid())
+  name             String             @db.VarChar(20)
+  country          String             @db.VarChar(10)
+  area             String             @db.VarChar(10)
+  createdAt        DateTime?          @default(now()) @db.Date
+  updatedAt        DateTime?          @updatedAt
+  Noti             Noti[]
+}
