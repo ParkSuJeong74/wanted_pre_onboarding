@@ -4,7 +4,7 @@ import { CreateNotiDto } from './dto';
 
 @Injectable()
 export class NotiService {
-  constructor(private readonly prismaService: PrismaService) {} //
+  constructor(private readonly prismaService: PrismaService) {}
 
   async createNoti(createNotiDto: CreateNotiDto): Promise<CreateNotiDto> {
     const { company_id, position, reward, description, tech } = createNotiDto;
@@ -21,5 +21,11 @@ export class NotiService {
 
   async notiLists() {
     return await this.prismaService.noti.findMany();
+  }
+
+  async notiDetail(id: string) {
+    return await this.prismaService.noti.findUnique({
+      where: { id },
+    });
   }
 }

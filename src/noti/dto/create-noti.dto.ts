@@ -1,8 +1,8 @@
 import { IsNumber, IsString } from 'class-validator';
 
 export class CreateNotiDto {
-  @IsNumber()
-  company_id: number;
+  @IsString()
+  company_id: string;
 
   @IsString()
   position: string;

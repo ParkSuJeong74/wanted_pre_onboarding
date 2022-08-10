@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateNotiDto } from './dto';
 import { NotiService } from './noti.service';
 
@@ -16,5 +16,10 @@ export class NotiController {
   @Get()
   async notiLists() {
     return await this.notiService.notiLists();
+  }
+
+  @Get()
+  async notiDetail(@Query() id: string) {
+    return await this.notiService.notiDetail(id);
   }
 }
