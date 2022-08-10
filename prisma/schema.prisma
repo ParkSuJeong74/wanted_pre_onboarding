@@ -24,9 +24,9 @@ model Noti {
 
 model Company {
   id               String             @id @default(uuid())
-  name             String             @db.VarChar(20)
-  country          String             @db.VarChar(10)
-  area             String             @db.VarChar(10)
+  name             String?            @db.VarChar(20)
+  country          String?            @db.VarChar(10)
+  area             String?            @db.VarChar(10)
   createdAt        DateTime?          @default(now()) @db.Date
   updatedAt        DateTime?          @updatedAt
   Noti             Noti[]
