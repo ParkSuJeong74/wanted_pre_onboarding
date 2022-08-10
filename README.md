@@ -24,19 +24,25 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 - Noti : 채용 공고 DB Model
 
+- Company : 회사 DB Model
+
 ### 1. 채용 공고 CRUD
 
 - POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
 
-- Get /noti/all : 채용 공고의 모든 데이터를 조회
+- GET /noti/all : 채용 공고의 모든 데이터를 조회
 
-- Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
+- DELETE /noti?id='' : 채용 공고 삭제
 
-- Delete /noti?id='' : 채용 공고 삭제
+### 1-1. 회사 등록
+
+- POST /company : 회사 등록(채용 공고 등록을 위해 생성)
 
 ### 2. 채용 공고 검색 기능
 
 ### 3. 채용 공고 상세
+
+- Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
 
 ### 4. 지원
 
