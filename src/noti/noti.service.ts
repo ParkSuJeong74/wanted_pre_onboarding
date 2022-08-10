@@ -6,7 +6,7 @@ import { CreateNotiDto } from './dto';
 export class NotiService {
   constructor(private readonly prismaService: PrismaService) {} //
 
-  async createNoti(createNotiDto: CreateNotiDto) {
+  async createNoti(createNotiDto: CreateNotiDto): Promise<CreateNotiDto> {
     const { company_id, position, reward, description, tech } = createNotiDto;
     return await this.prismaService.noti.create({
       data: {
@@ -17,5 +17,9 @@ export class NotiService {
         tech,
       },
     });
+  }
+
+  async notiLists() {
+    return await this.prismaService.noti.findMany();
   }
 }
