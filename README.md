@@ -13,24 +13,26 @@
 - RDBMS 사용 (SQLite, PostgreSQL 등) : `postgres` 사용
 - 코드 가독성을 위해 `prettier` 설정
 - Git commit 메시지 컨벤션 : [Add], [Fix], [Docs] 사용
-- 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `noti` 모델 생성
+- 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `Noti` 모델 생성
 - Unit Test
 
 ## 구현 과정
 
 ### 0. modeling
 
-AWS LightSail의 Database 사용. 아래 `.env` 공개
+AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
-- noti : 채용 공고 DB Model
+- Noti : 채용 공고 DB Model
 
 ### 1. 채용 공고 CRUD
 
 - POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
 
-- Get /noti : 채용 공고의 모든 데이터를 조회
+- Get /noti/all : 채용 공고의 모든 데이터를 조회
 
 - Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
+
+- Delete /noti?id='' : 채용 공고 삭제
 
 ### 2. 채용 공고 검색 기능
 
