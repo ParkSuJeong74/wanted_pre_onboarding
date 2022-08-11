@@ -59,7 +59,77 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 - POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
 
-- DELETE /noti?id='' : 채용 공고 삭제
+생성 요청 데이터
+
+```json
+{
+  "company_id": "abb946a1-6feb-4320-94e1-66a1c0eeb2f4",
+  "position": "Django 백엔드 개발자",
+  "reward": 1500000,
+  "description": "네이버에서 백엔드 주니어 개발자를 채용합니다. 자격요건은..",
+  "tech": "Django"
+}
+```
+
+생성 결과 데이터
+
+```json
+{
+  "id": "abc69ece-64b0-4cf3-8da6-402d4cd2a3d7",
+  "position": "Django 백엔드 개발자",
+  "reward": 1500000,
+  "description": "네이버에서 백엔드 주니어 개발자를 채용합니다. 자격요건은..",
+  "tech": "Django",
+  "createdAt": "2022-08-11T00:00:00.000Z",
+  "updatedAt": "2022-08-11T09:24:05.124Z",
+  "company_id": "abb946a1-6feb-4320-94e1-66a1c0eeb2f4"
+}
+```
+
+- PATCH /noti?id='' : 해당 id의 채용 공고 수정
+
+원본 데이터
+
+```json
+{
+  "id": "abc69ece-64b0-4cf3-8da6-402d4cd2a3d7",
+  "position": "Django 백엔드 개발자",
+  "reward": 1500000,
+  "description": "네이버에서 백엔드 주니어 개발자를 채용합니다. 자격요건은..",
+  "tech": "Django",
+  "createdAt": "2022-08-11T00:00:00.000Z",
+  "updatedAt": "2022-08-11T09:24:05.124Z",
+  "company_id": "abb946a1-6feb-4320-94e1-66a1c0eeb2f4"
+}
+```
+
+변경 요청 데이터
+
+```json
+{
+  "position": "백엔드 주니어 개발자",
+  "reward": 1500000,
+  "description": "원티드랩에서 백엔드 주니어 개발자를 '적극' 채용합니다. 자격요건은..",
+  "tech": "Python"
+}
+```
+
+변경 결과 데이터
+
+```json
+{
+  "id": "ef21a049-ad29-4ae4-9a3d-3172403c1ccd",
+  "position": "백엔드 주니어 개발자",
+  "reward": 1500000,
+  "description": "원티드랩에서 백엔드 주니어 개발자를 '적극' 채용합니다. 자격요건은..",
+  "tech": "Python",
+  "createdAt": "2022-08-11T00:00:00.000Z",
+  "updatedAt": "2022-08-11T09:27:34.495Z",
+  "company_id": "abb946a1-6feb-4320-94e1-66a1c0eeb2f4"
+}
+```
+
+- DELETE /noti?id='' : 해당 id의 채용 공고 삭제
 
 ### 1-1. 회사 등록
 
