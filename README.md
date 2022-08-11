@@ -28,9 +28,36 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 ### 1. 채용 공고 CRUD
 
-- POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
-
 - GET /noti/all : 채용 공고의 모든 데이터를 조회
+
+```json
+[
+  {
+    "id": "45d675bf-2d42-4ed8-b4a9-a391a2cff21a",
+    "position": "백엔드 주니어 개발자",
+    "reward": 1000000,
+    "tech": "Python",
+    "Company": {
+      "name": "원티드랩",
+      "country": "한국",
+      "area": "서울"
+    }
+  },
+  {
+    "id": "ef21a049-ad29-4ae4-9a3d-3172403c1ccd",
+    "position": "Django 백엔드 개발자",
+    "reward": 1500000,
+    "tech": "Django",
+    "Company": {
+      "name": "네이버",
+      "country": "한국",
+      "area": "판교"
+    }
+  }
+]
+```
+
+- POST /noti : 채용 공고 데이터 입력 받아 noti model에 저장
 
 - DELETE /noti?id='' : 채용 공고 삭제
 
@@ -62,8 +89,9 @@ $ npm install
 DATABASE_URL="postgresql://dbmasteruser:preonboarding@ls-e59aa34ed81177ac30924c26cfbae54822118c6f.cjg7d5nnlkqz.ap-northeast-2.rds.amazonaws.com:5432/postgres"
 ```
 
+watch mode로 실행하기
+
 ```bash
-# watch mode
 $ npm run start:dev
 ```
 
