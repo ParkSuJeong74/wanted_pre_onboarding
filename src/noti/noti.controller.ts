@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { Noti } from '@prisma/client';
-import { CreateNotiDto } from './dto';
+import { CreateNotiDto, NotiListsResponse } from './dto';
 import { NotiService } from './noti.service';
 
 @Controller('noti')
@@ -23,7 +23,7 @@ export class NotiController {
   }
 
   @Get('all')
-  async notiLists(): Promise<Noti[]> {
+  async notiLists(): Promise<NotiListsResponse[]> {
     return await this.notiService.notiLists();
   }
 }
