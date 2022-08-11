@@ -137,6 +137,66 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 ### 2. 채용 공고 검색 기능
 
+- GET /noti/search?search='' : 채용 공고 검색 기능
+
+?search=원티드
+
+```json
+[
+  {
+    "id": "45d675bf-2d42-4ed8-b4a9-a391a2cff21a",
+    "position": "백엔드 주니어 개발자",
+    "reward": 1000000,
+    "tech": "Python",
+    "Company": {
+      "name": "원티드랩",
+      "country": "한국",
+      "area": "서울"
+    }
+  },
+  {
+    "id": "86576896-2846-4f6a-bde0-bc0d98a6a9e6",
+    "position": "Django 백엔드 개발자",
+    "reward": 1500000,
+    "tech": "Django",
+    "Company": {
+      "name": "원티드랩",
+      "country": "한국",
+      "area": "서울"
+    }
+  }
+]
+```
+
+?search=Django
+
+```json
+[
+  {
+    "id": "86576896-2846-4f6a-bde0-bc0d98a6a9e6",
+    "position": "Django 백엔드 개발자",
+    "reward": 1500000,
+    "tech": "Django",
+    "Company": {
+      "name": "원티드랩",
+      "country": "한국",
+      "area": "서울"
+    }
+  },
+  {
+    "id": "4591675b-01f1-41e3-9486-fd606ffcdac3",
+    "position": "백엔드 주니어 개발자",
+    "reward": 1500000,
+    "tech": "Django",
+    "Company": {
+      "name": "네이버",
+      "country": "한국",
+      "area": "판교"
+    }
+  }
+]
+```
+
 ### 3. 채용 공고 상세
 
 - Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
