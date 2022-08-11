@@ -201,6 +201,28 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 - Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
 
+```json
+{
+  "id": "45d675bf-2d42-4ed8-b4a9-a391a2cff21a",
+  "position": "백엔드 주니어 개발자",
+  "reward": 1000000,
+  "tech": "Python",
+  "Company": {
+    "name": "원티드랩",
+    "country": "한국",
+    "area": "서울",
+    "Noti": [
+      {
+        "id": "45d675bf-2d42-4ed8-b4a9-a391a2cff21a"
+      },
+      {
+        "id": "86576896-2846-4f6a-bde0-bc0d98a6a9e6"
+      }
+    ]
+  }
+}
+```
+
 ### 4. 지원
 
 ## Installation
