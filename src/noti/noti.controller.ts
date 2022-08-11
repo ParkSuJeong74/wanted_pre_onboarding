@@ -26,13 +26,21 @@ export class NotiController {
     return await this.notiService.notiLists();
   }
 
+  @Get('search')
+  async searchNoti(@Query() search: string) {
+    return await this.notiService.searchNoti(search);
+  }
+
   @Post()
   async createNoti(@Body() createNotiDto: CreateNotiDto): Promise<Noti> {
     return await this.notiService.createNoti(createNotiDto);
   }
 
   @Patch()
-  async updateNoti(@Query() id: number, @Body() updateNotiDto: UpdateNotiDto) {
+  async updateNoti(
+    @Query() id: number,
+    @Body() updateNotiDto: UpdateNotiDto,
+  ): Promise<UpdateNotiDto> {
     return await this.notiService.updateNoti(id, updateNotiDto);
   }
 

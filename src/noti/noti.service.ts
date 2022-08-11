@@ -8,6 +8,7 @@ export class NotiService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async createNoti(createNotiDto: CreateNotiDto): Promise<Noti> {
+    console.log(createNotiDto);
     const { company_id, position, reward, description, tech } = createNotiDto;
     return await this.prismaService.noti.create({
       data: {
@@ -60,6 +61,30 @@ export class NotiService {
         reward,
         description,
         tech,
+      },
+    });
+  }
+  async searchNoti({ search }) {
+    return await this.prismaService.noti.findMany({
+      where: {
+        OR: [
+          { position: { startsWith: search } },
+          { tech: { startsWith: search } },
+          { Company: { name: { startsWith: search } } },
+        ],
+      },
+      select: {
+        id: true,
+        position: true,
+        reward: true,
+        tech: true,
+        Company: {
+          select: {
+            name: true,
+            country: true,
+            area: true,
+          },
+        },
       },
     });
   }
