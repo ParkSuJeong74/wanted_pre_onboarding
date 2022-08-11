@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Noti } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateNotiDto, NotiListsResponse } from './dto';
+import { CreateNotiDto, NotiListsResponse, UpdateNotiDto } from './dto';
 
 @Injectable()
 export class NotiService {
@@ -50,31 +50,17 @@ export class NotiService {
   async deleteNoti(id): Promise<Noti> {
     return await this.prismaService.noti.delete({ where: id });
   }
+
+  async updateNoti(id, updateNotiDto: UpdateNotiDto): Promise<UpdateNotiDto> {
+    const { position, reward, description, tech } = updateNotiDto;
+    return await this.prismaService.noti.update({
+      where: id,
+      data: {
+        position,
+        reward,
+        description,
+        tech,
+      },
+    });
+  }
 }
-
-// @Put()
-// async updateNoti(
-//   @Query() id: number,
-//   @Body() updateNotiDto: UpdateNotiDto,
-// ): Promise<UpdateNotiDto> {
-//   console.log(id);
-//   return await this.notiService.updateNoti(id, updateNotiDto);
-// }
-
-//   async updateNoti(
-//     id: number,
-//     updateNotiDto: UpdateNotiDto,
-//   ): Promise<UpdateNotiDto> {
-//     const { position, reward, description, tech } = updateNotiDto;
-//     console.log(id, updateNotiDto);
-//     console.log(typeof id);
-//     return await this.prismaService.noti.update({
-//       where: { id },
-//       data: {
-//         position,
-//         reward,
-//         description,
-//         tech,
-//       },
-//     });
-//   }
