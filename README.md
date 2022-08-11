@@ -26,6 +26,10 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 - Company : 회사 DB Model
 
+- User : 사용자 DB Model
+
+- ApplyNoti : 지원 DB Model
+
 ### 1. 채용 공고 CRUD
 
 - GET /noti/all : 채용 공고의 모든 데이터를 조회
@@ -223,7 +227,13 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 }
 ```
 
+### 4-1. 사용자 생성
+
+- POST /user : 사용자 이름 데이터 입력 받아 user model에 저장
+
 ### 4. 지원
+
+- POST /
 
 ## Installation
 
