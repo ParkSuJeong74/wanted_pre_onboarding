@@ -20,6 +20,7 @@ model Noti {
   updatedAt        DateTime?          @updatedAt
   company_id       String?
   Company          Company?           @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ApplyNoti        ApplyNoti[]
 }
 
 model Company {
@@ -30,4 +31,18 @@ model Company {
   createdAt        DateTime?          @default(now()) @db.Date
   updatedAt        DateTime?          @updatedAt
   Noti             Noti[]
+}
+
+model User {
+  id               String             @id @default(uuid())
+  name             String             @db.VarChar(10)
+  ApplyNoti        ApplyNoti[]
+}
+
+model ApplyNoti {
+  id               String             @id @default(uuid())
+  user_id          String?
+  noti_id          String?
+  User             User?              @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Noti             Noti?              @relation(fields: [noti_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

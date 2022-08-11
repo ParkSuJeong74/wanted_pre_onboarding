@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CompanyModule } from './company/company.module';
 import { NotiModule } from './noti/noti.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { PrismaModule } from './prisma/prisma.module';
     PrismaModule,
     ConfigModule.forRoot({ isGlobal: true }),
     CompanyModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],
