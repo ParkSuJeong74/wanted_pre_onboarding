@@ -40,12 +40,25 @@ export class NotiService {
     return notiLists;
   }
 
-  async notiDetail(id): Promise<Noti> {
+  async notiDetail(id) {
     const noti = await this.prismaService.noti.findUnique({
       where: id,
+      select: {
+        id: true,
+        position: true,
+        reward: true,
+        tech: true,
+        Company: {
+          select: {
+            name: true,
+            country: true,
+            area: true,
+            Noti: { select: { id: true } },
+          },
+        },
+      },
     });
-    console.log(noti.company_id);
-    return;
+    return noti;
   }
 
   async deleteNoti(id): Promise<Noti> {

@@ -17,7 +17,7 @@ export class NotiController {
   constructor(private readonly notiService: NotiService) {}
 
   @Get()
-  async notiDetail(@Query() id: string): Promise<Noti> {
+  async notiDetail(@Query() id: string) {
     return await this.notiService.notiDetail(id);
   }
 
@@ -38,7 +38,7 @@ export class NotiController {
 
   @Patch()
   async updateNoti(
-    @Query() id: number,
+    @Query() id: string,
     @Body() updateNotiDto: UpdateNotiDto,
   ): Promise<UpdateNotiDto> {
     return await this.notiService.updateNoti(id, updateNotiDto);
