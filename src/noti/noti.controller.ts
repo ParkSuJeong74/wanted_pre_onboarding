@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpStatus,
+  Param,
   Patch,
   Post,
   Query,
@@ -16,11 +17,6 @@ import { NotiService } from './noti.service';
 export class NotiController {
   constructor(private readonly notiService: NotiService) {}
 
-  @Get()
-  async notiDetail(@Query() id: string) {
-    return await this.notiService.notiDetail(id);
-  }
-
   @Get('all')
   async notiLists(): Promise<NotiListsResponse[]> {
     return await this.notiService.notiLists();
@@ -31,21 +27,26 @@ export class NotiController {
     return await this.notiService.searchNoti(search);
   }
 
+  @Get(':id')
+  async notiDetail(@Param('id') id: string) {
+    return await this.notiService.notiDetail(id);
+  }
+
   @Post()
   async createNoti(@Body() createNotiDto: CreateNotiDto): Promise<Noti> {
     return await this.notiService.createNoti(createNotiDto);
   }
 
-  @Patch()
+  @Patch(':id')
   async updateNoti(
-    @Query() id: string,
+    @Param('id') id: string,
     @Body() updateNotiDto: UpdateNotiDto,
   ): Promise<UpdateNotiDto> {
     return await this.notiService.updateNoti(id, updateNotiDto);
   }
 
-  @Delete()
-  async deleteNoti(@Query() id: string): Promise<number> {
+  @Delete(':id')
+  async deleteNoti(@Param('id') id: string): Promise<number> {
     await this.notiService.deleteNoti(id);
     return HttpStatus.OK;
   }

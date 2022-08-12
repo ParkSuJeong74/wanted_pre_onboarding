@@ -8,7 +8,6 @@ export class NotiService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async createNoti(createNotiDto: CreateNotiDto): Promise<Noti> {
-    console.log(createNotiDto);
     const { company_id, position, reward, description, tech } = createNotiDto;
     return await this.prismaService.noti.create({
       data: {
@@ -40,9 +39,9 @@ export class NotiService {
     return notiLists;
   }
 
-  async notiDetail(id) {
+  async notiDetail(id: string) {
     const noti = await this.prismaService.noti.findUnique({
-      where: id,
+      where: { id },
       select: {
         id: true,
         position: true,
@@ -61,14 +60,17 @@ export class NotiService {
     return noti;
   }
 
-  async deleteNoti(id): Promise<Noti> {
-    return await this.prismaService.noti.delete({ where: id });
+  async deleteNoti(id: string): Promise<Noti> {
+    return await this.prismaService.noti.delete({ where: { id } });
   }
 
-  async updateNoti(id, updateNotiDto: UpdateNotiDto): Promise<UpdateNotiDto> {
+  async updateNoti(
+    id: string,
+    updateNotiDto: UpdateNotiDto,
+  ): Promise<UpdateNotiDto> {
     const { position, reward, description, tech } = updateNotiDto;
     return await this.prismaService.noti.update({
-      where: id,
+      where: { id },
       data: {
         position,
         reward,

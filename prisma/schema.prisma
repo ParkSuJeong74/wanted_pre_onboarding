@@ -36,13 +36,13 @@ model Company {
 model User {
   id               String             @id @default(uuid())
   name             String             @db.VarChar(10)
-  ApplyNoti        ApplyNoti[]
+  ApplyNoti        ApplyNoti?
 }
 
 model ApplyNoti {
   id               String             @id @default(uuid())
-  user_id          String?
+  user_id          String             @unique
   noti_id          String?
-  User             User?              @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User             User               @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   Noti             Noti?              @relation(fields: [noti_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
