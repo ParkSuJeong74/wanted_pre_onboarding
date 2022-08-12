@@ -235,7 +235,7 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 ### 4. 지원
 
-- POST /user/apply
+- POST /user/apply : 사용자가 공고에 지원하면 사용자와 채용공고 id를 함께 저장
 
 생성 요청 데이터
 
