@@ -12,8 +12,8 @@
 - ORM 사용하여 구현 : ORM인 `prisma` 사용
 - RDBMS 사용 (SQLite, PostgreSQL 등) : `postgres` 사용
 - 코드 가독성을 위해 `prettier` 설정
-- Git commit 메시지 컨벤션 : [Add], [Fix], [Docs] 사용
-- 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `Noti` 모델 생성
+- Git commit 메시지 컨벤션 : [Add], [Fix], [Docs], [Test] 사용
+- 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `Noti` `Company` `User` `ApplyNoti` 모델 생성
 - Unit Test
 
 ## 구현 과정
@@ -29,6 +29,8 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 - User : 사용자 DB Model
 
 - ApplyNoti : 지원 DB Model
+
+![image](https://user-images.githubusercontent.com/71163016/184298951-9aad7b03-5075-411d-afb7-dfb92466acff.png)
 
 ### 1-1. 회사 등록
 
@@ -94,7 +96,7 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 }
 ```
 
-- PATCH /noti?id='' : 해당 id의 채용 공고 수정
+- PATCH /noti/:id : 해당 id의 채용 공고 수정
 
 원본 데이터
 
@@ -137,7 +139,7 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 }
 ```
 
-- DELETE /noti?id='' : 해당 id의 채용 공고 삭제
+- DELETE /noti/:id : 해당 id의 채용 공고 삭제
 
 ### 2. 채용 공고 검색 기능
 
@@ -203,7 +205,7 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 ### 3. 채용 공고 상세
 
-- Get /noti?id='' : 채용 상세 페이지를 위한 데이터 조회
+- Get /noti/:id : 채용 상세 페이지를 위한 데이터 조회
 
 ```json
 {
@@ -233,7 +235,26 @@ AWS LightSail의 Database(Postgres) 사용. 아래 `.env` 공개
 
 ### 4. 지원
 
-- POST /
+- POST /user/apply
+
+생성 요청 데이터
+
+```json
+{
+  "user_id": "31f39d78-ab00-46e7-a2a8-02f3ee54424e",
+  "noti_id": "d6893040-fc94-423b-800b-0916acafe18e"
+}
+```
+
+생성 결과 데이터
+
+```json
+{
+  "id": "72f907df-fc5f-4227-b457-6ebfe4b35a7a",
+  "user_id": "31f39d78-ab00-46e7-a2a8-02f3ee54424e",
+  "noti_id": "d6893040-fc94-423b-800b-0916acafe18e"
+}
+```
 
 ## Installation
 
