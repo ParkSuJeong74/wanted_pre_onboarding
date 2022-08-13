@@ -6,7 +6,16 @@ import { CreateApplyDto } from './dto';
 @Injectable()
 export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
-  async createNoti(name): Promise<User> {
+
+  async getAll(): Promise<User[]> {
+    return await this.prismaService.user.findMany({});
+  }
+
+  async getAllApplies(): Promise<ApplyNoti[]> {
+    return await this.prismaService.applyNoti.findMany({});
+  }
+
+  async createUser(name): Promise<User> {
     return await this.prismaService.user.create({ data: name });
   }
 
