@@ -12,9 +12,9 @@
 - ORM 사용하여 구현 : ORM인 `prisma` 사용
 - RDBMS 사용 (SQLite, PostgreSQL 등) : `postgres` 사용
 - 코드 가독성을 위해 `prettier` 설정
-- Git commit 메시지 컨벤션 : [Add], [Fix], [Docs], [Test] 사용
+- Git commit 메시지 컨벤션 : [Add], [Fix], [Docs] 사용
 - 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `Noti` `Company` `User` `ApplyNoti` 모델 생성
-- Unit Test
+- Unit Test : company, user 테스트 코드 작성 / mock 서버 적용 필요함
 
 ## 구현 과정
 
@@ -279,6 +279,8 @@ $ npm run start:dev
 ```
 
 ## Test
+
+각 Service의 테스트 코드 작성
 
 ```bash
 # unit tests
