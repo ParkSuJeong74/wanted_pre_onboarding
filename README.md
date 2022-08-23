@@ -14,7 +14,7 @@
 - 코드 가독성을 위해 `prettier` 설정
 - Git commit 메시지 컨벤션 : [Add], [Fix], [Docs] 사용
 - 필요한 모델(회사, 사용자, 채용공고, 지원내역(선택사항)) : `Noti` `Company` `User` `ApplyNoti` 모델 생성
-- Unit Test : company, user 테스트 코드 작성 / mock 서버 적용 필요함
+- Unit Test : company, user, noti 테스트 코드 작성 / mock 서버 적용
 
 ## 구현 과정
 
@@ -285,12 +285,6 @@ $ npm run start:dev
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## License
