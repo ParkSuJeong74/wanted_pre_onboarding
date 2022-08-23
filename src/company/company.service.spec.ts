@@ -2,38 +2,43 @@ import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CompanyService } from './company.service';
+import { CreateCompanyDto } from './dto';
 
-describe('CompanyService', () => {
+class MockService {
+  getAll() {
+    return [];
+  }
+  createCompany(dto: CreateCompanyDto) {
+    return [];
+  }
+}
+
+describe.only('CompanyService', () => {
   let service: CompanyService;
 
   beforeEach(async () => {
+    const mockProvider = { provide: CompanyService, useClass: MockService };
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CompanyService, PrismaService, ConfigService],
+      providers: [CompanyService, PrismaService, ConfigService, mockProvider],
     }).compile();
 
     service = module.get<CompanyService>(CompanyService);
+  });
+
+  afterEach(async () => {
+    jest.clearAllMocks();
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  it('should return all companies', async () => {
-    const result = await service.getAll();
-    expect(result).toBeInstanceOf(Array);
-  });
-
   describe('create', () => {
-    it('should create new company', async () => {
-      const beforeCreate = await service.getAll();
-      const company = {
-        name: '회사이름',
-        country: '국가',
-        area: '지역',
-      };
-      await service.createCompany(company);
-      const afterCreate = await service.getAll();
-      await expect(afterCreate.length).toEqual(beforeCreate.length + 1);
+    it('should create a company', async () => {
+      const createCompanySpy = jest.spyOn(service, 'createCompany');
+      const dto = new CreateCompanyDto();
+      service.createCompany(dto);
+      expect(createCompanySpy).toHaveBeenCalledWith(dto);
     });
   });
 });

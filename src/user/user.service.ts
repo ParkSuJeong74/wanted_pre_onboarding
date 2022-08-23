@@ -7,14 +7,6 @@ import { CreateApplyDto } from './dto';
 export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getAll(): Promise<User[]> {
-    return await this.prismaService.user.findMany({});
-  }
-
-  async getAllApplies(): Promise<ApplyNoti[]> {
-    return await this.prismaService.applyNoti.findMany({});
-  }
-
   async createUser(name): Promise<User> {
     return await this.prismaService.user.create({ data: name });
   }

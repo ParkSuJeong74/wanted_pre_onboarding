@@ -7,10 +7,6 @@ import { CreateCompanyDto } from './dto';
 export class CompanyService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getAll(): Promise<Company[]> {
-    return await this.prismaService.company.findMany({});
-  }
-
   async createCompany(createCompanyDto: CreateCompanyDto): Promise<Company> {
     const { name, country, area } = createCompanyDto;
     return await this.prismaService.company.create({
