@@ -64,10 +64,7 @@ export class NotiService {
     return await this.prismaService.noti.delete({ where: { id } });
   }
 
-  async updateNoti(
-    id: string,
-    updateNotiDto: UpdateNotiDto,
-  ): Promise<UpdateNotiDto> {
+  async updateNoti(id: string, updateNotiDto: UpdateNotiDto): Promise<Noti> {
     const { position, reward, description, tech } = updateNotiDto;
     return await this.prismaService.noti.update({
       where: { id },
@@ -79,6 +76,7 @@ export class NotiService {
       },
     });
   }
+
   async searchNoti({ search }) {
     return await this.prismaService.noti.findMany({
       where: {
